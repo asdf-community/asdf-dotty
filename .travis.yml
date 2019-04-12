@@ -1,4 +1,4 @@
-language: c
+language: java
 script: asdf plugin-test dotty $PWD 'dotc --help'
 before_script:
   - git clone https://github.com/asdf-vm/asdf.git
