@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+
+install_dotty() {
+  local install_type=$1
+  local version=$2
+  local install_path=$3
+
+  if [ "$install_type" != "version" ]; then
+    echo "ERROR: this plugin can only install dotty releases"
+    exit 1
+  fi
+
+  if [ "$TMPDIR" = "" ]; then
+    local tmp_download_dir=$(mktemp -d -t dotty_build_XXXXXX)
+  else
+    local tmp_download_dir=$TMPDIR
+  fi
+
+  # path to the tar file
+  local source_path=$(get_download_file_path $install_type $version $tmp_download_dir)
+  echo $source_path
+  download_source_file $install_type $version $source_path
+
+  tar zxf $source_path -C $install_path --strip-components=1
+}
+
+
+download_source_file() {
+  local install_type=$1
+  local version=$2
+  local download_path=$3
+  local download_url=$(get_download_url $install_type $version)
+
+  curl -Lo $download_path $download_url
+}
+
+
+get_download_file_path() {
+  local install_type=$1
+  local version=$2
+  local tmp_download_dir=$3
+
+  local pkg_name="dotty-${install_type}-${version}.tar.gz"
+
+  echo "$tmp_download_dir/$pkg_name"
+}
+
+
+get_download_url() {
+  local install_type=$1
+  local version=$2
+
+  echo "https://github.com/lampepfl/dotty/releases/download/${version}/dotty-${version}.tar.gz"
+}
+
+
+install_dotty $ASDF_INSTALL_TYPE $ASDF_INSTALL_VERSION $ASDF_INSTALL_PATH
