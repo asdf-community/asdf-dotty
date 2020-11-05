@@ -11,17 +11,18 @@ install_dotty() {
   fi
 
   if [ "$TMPDIR" = "" ]; then
-    local tmp_download_dir=$(mktemp -d -t dotty_build_XXXXXX)
+    local tmp_download_dir
+    tmp_download_dir=$(mktemp -d -t dotty_build_XXXXXX)
   else
     local tmp_download_dir=$TMPDIR
   fi
 
   # path to the tar file
-  local source_path=$(get_download_file_path $install_type $version $tmp_download_dir)
-  echo $source_path
-  download_source_file $install_type $version $source_path
+  local source_path
+  source_path=$(get_download_file_path "$install_type" "$version" "$tmp_download_dir")
+  download_source_file "$install_type" "$version" "$source_path"
 
-  tar zxf $source_path -C $install_path --strip-components=1
+  tar zxf "$source_path" -C "$install_path" --strip-components=1
 }
 
 
@@ -29,9 +30,10 @@ download_source_file() {
   local install_type=$1
   local version=$2
   local download_path=$3
-  local download_url=$(get_download_url $install_type $version)
+  local download_url
+  download_url=$(get_download_url "$install_type" "$version")
 
-  curl -Lo $download_path $download_url
+  curl -vLo "$download_path" "$download_url"
 }
 
 
@@ -70,4 +72,4 @@ get_download_url() {
 }
 
 
-install_dotty $ASDF_INSTALL_TYPE $ASDF_INSTALL_VERSION $ASDF_INSTALL_PATH
+install_dotty "$ASDF_INSTALL_TYPE" "$ASDF_INSTALL_VERSION" "$ASDF_INSTALL_PATH"
