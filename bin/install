@@ -25,7 +25,6 @@ install_dotty() {
   tar zxf "$source_path" -C "$install_path" --strip-components=1
 }
 
-
 download_source_file() {
   local install_type=$1
   local version=$2
@@ -35,7 +34,6 @@ download_source_file() {
 
   curl -vLo "$download_path" "$download_url"
 }
-
 
 get_download_file_path() {
   local install_type=$1
@@ -61,7 +59,6 @@ release_name() {
   esac
 }
 
-
 get_download_url() {
   local install_type=$1
   local version=$2
@@ -70,6 +67,5 @@ get_download_url() {
 
   echo "https://github.com/lampepfl/dotty/releases/download/${version}/${name}-${version}.tar.gz"
 }
-
 
 install_dotty "$ASDF_INSTALL_TYPE" "$ASDF_INSTALL_VERSION" "$ASDF_INSTALL_PATH"
