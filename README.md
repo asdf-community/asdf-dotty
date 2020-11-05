@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/vic/asdf-dotty.svg?branch=master)](https://travis-ci.org/vic/asdf-dotty)
 
-[Dotty](https://github.com/lampepfl/dotty) plugin for [asdf](https://github.com/asdf-vm/asdf) version manager
+[Dotty](https://github.com/lampepfl/dotty) (Scala3) plugin for [asdf](https://github.com/asdf-vm/asdf) version manager
 
 
 ## Install
