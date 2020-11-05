@@ -1,6 +1,6 @@
 # asdf-dotty
 
-[![Build Status](https://travis-ci.org/vic/asdf-dotty.svg?branch=master)](https://travis-ci.org/vic/asdf-dotty)
+[![Main workflow](https://github.com/asdf-community/asdf-dotty/workflows/Main%20workflow/badge.svg)](https://github.com/asdf-community/asdf-dotty/actions)
 
 [Dotty](https://github.com/lampepfl/dotty) (Scala3) plugin for [asdf](https://github.com/asdf-vm/asdf) version manager
 
