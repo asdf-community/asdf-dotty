@@ -39,18 +39,34 @@ get_download_file_path() {
   local install_type=$1
   local version=$2
   local tmp_download_dir=$3
+  local name
+  name="$(release_name "$version")"
 
-  local pkg_name="dotty-${install_type}-${version}.tar.gz"
+  local pkg_name="${name}-${install_type}-${version}.tar.gz"
 
   echo "$tmp_download_dir/$pkg_name"
+}
+
+release_name() {
+  local version=$2
+  case "$version" in
+    "0.*")
+      echo "dotty"
+      ;;
+    *)
+      echo "scala3"
+      ;;
+  esac
 }
 
 
 get_download_url() {
   local install_type=$1
   local version=$2
+  local name
+  name="$(release_name "$version")"
 
-  echo "https://github.com/lampepfl/dotty/releases/download/${version}/dotty-${version}.tar.gz"
+  echo "https://github.com/lampepfl/dotty/releases/download/${version}/${name}-${version}.tar.gz"
 }
 
 
