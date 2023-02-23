@@ -33,7 +33,7 @@ jobs:
           asdf plugin-add dotty $GITHUB_WORKSPACE
           asdf install dotty latest
         env:
-          GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_API_TOKEN: ${{ github.token }}
 
   plugin_test:
     strategy:
