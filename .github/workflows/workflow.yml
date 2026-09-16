@@ -24,7 +24,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: temurin
-          java-version: 16
+          java-version: 25
 
       - uses: asdf-vm/actions/plugin-test@v3
         with:
